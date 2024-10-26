@@ -1,12 +1,11 @@
-# curso-python-proway-20240720
+# curso-python-proway-20241026
 
 Repositório com as aulas do curso de Python da Proway.
 
-O Curso Será dividido em 3 módulos:
+O Curso Será dividido em 2 módulos:
 
 1. Python Fundamentos
 2. Python com Banco de Dados
-3. Python Web com Django
 
 ## Ferramentas utilizadas durante o curso
 
