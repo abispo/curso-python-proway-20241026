@@ -16,9 +16,7 @@
 
 8. Crie um programa que receba um número inteiro e exiba se ele é par ou ímpar.
 
-9. Crie um programa que receba o nome, o peso e a altura de uma pessoa. Em seguida, calcule o seu IMC. A altura deve ser informada no formato `metros.centimetros` (exemplo 1.79). A fórmula do IMC é a seguinte: peso / (altura * altura).
-
-10. Escreva um programa que leia o salário de um funcionário e exiba o valor do salário líquido, descontando o INSS. As faixas de desconto são as seguintes:
+9. Escreva um programa que leia o salário de um funcionário e exiba o valor do salário líquido, descontando o INSS. As faixas de desconto são as seguintes:
 * Até R$ 1.320,00                   7,5%
 * De R$ 1.320,01 a R$ 2.571,29 	    9%
 * De R$ 2.571,30 até R$ 3.856,94 	12%
