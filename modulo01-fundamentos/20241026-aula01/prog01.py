@@ -28,12 +28,17 @@ if __name__ == "__main__":
         * Dicionários
         * e outros
 
-    nome é a variável que está recebendo o retorno da função input(). Variáveis no Python são dinamicamente tipadas, ou seja, é o próprio interpretador que descobre o tipo de dado da variável. No caso acima, estamos salvando na variável nome o que o usuário digitou pelo terminal
+    nome é a variável que está recebendo o retorno da função input(). Variáveis no Python são dinamicamente tipadas, ou seja, é o próprio interpretador que descobre o tipo de dado da variável. No caso acima, estamos salvando na variável nome o que o usuário digitou pelo terminal. O caractere '=' é o operador de atribuição, ou seja, estamos atribuindo a variável nome o valor retornado da função input()
     """
-
-    numero = 10
     
-    print(f"Olá {nome} Bem-vindo(a) ao curso de Python")
+    print(f"Olá {nome}. Bem-vindo(a) ao curso de Python.")          # Sintaxe f-strings
+    print("Olá " + nome + ". Bem-vindo(a) ao curso de Python.")     # Sintaxe "comum"
+    print("Olá %s. Bem-vindo(a) ao curso de Python" % (nome,))      # Sintaxe Python 2.*
+    print("Olá {}. Bem-vindo(a) ao curso de Python. {}".format(nome, 10))
+    print("Olá {nome}. Bem-vindo(a) ao curso de Python.".format(
+        nome=nome
+    ))
+
     """
     A função built-in print() imprime um valor no terminal. Acima estamos utilizando o sintaxe de f-strings para concatenar o valor da variável nome com o restante do texto.
     """
