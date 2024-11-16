@@ -29,6 +29,10 @@ if __name__ == "__main__":
 
         """
         A única maneira de lermos um arquivo csv, é passando ele para um laço for. O laço for será executado enquanto houverem linhas a serem lidas no arquivo.
+
+        A função enumerate retorna o índice de leitura e o objeto lido. No caso abaixo, ele irá começar do número 1 i irá iterando esse número até o final do arquivo.
         """
-        for linha in arquivo_csv:
-            exibir_info(*linha)
+        for i, linha in enumerate(arquivo_csv, start=1):
+            # Essa condição existe para não ser exibida a primeira linha do arquivo
+            if i != 1:
+                exibir_info(*linha)
