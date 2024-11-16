@@ -22,7 +22,7 @@ Dica: Salve os dados em um dicionário e utilize a função built-in `sorted()` 
 2. Crie um script que abra o arquivo `vendas.txt` e leio o seu conteúdo. O conteúdo do arquivo é formado por uma lista de informações sobre vendedores: O seu código, o seu nome e a quantidade de vendas realizadas em um período. O script deve mostrar no terminal as seguintes informações:
 * Valor total de vendas (soma das vendas de todos os vendedores)
 * Média total de vendas
-* Lista dos maiores vendedores, do maior pro menor
+* Lista dos 10 maiores vendedores, do maior pro menor
 
 Além disso, deve ser calculado o valor total da remuneração do vendedor de acordo com as seguintes regras:
 * Vendedores que venderam menos de 5000, não recebem bônus
