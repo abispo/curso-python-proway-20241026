@@ -76,6 +76,9 @@ if __name__ == "__main__":
         """
         print(arquivo.readline(6))
         
+        """
+        O método tell() retorna a posição atual do cursor dentro do arquivo.
+        """
         print(f"Posição atual do cursor no arquivo: {arquivo.tell()}")
 
         """
@@ -98,6 +101,8 @@ if __name__ == "__main__":
 
         """
         Se quisermos ler novamente o arquivos, precisamos "rebobinar" o cursor até o início. Para isso, utilizamos o método seek()
+
+        Na linha abaixo, estamos instruindo o cursor a ser movido para o início do arquivo (posição/byte 0)
         """
         arquivo.seek(0)
 
