@@ -35,3 +35,24 @@ if __name__ == "__main__":
         
         # O método writerows grava várias linhas no arquivo de uma vez só. Ele recebe uma lista de listas
         arquivo_csv.writerows(lista_de_compras)
+
+    lista_de_compras = [
+        {"id": 1, "produto": "Pilha AAA", "quantidade": 2, "valor": 19.90},
+        {"id": 2, "produto": "Fone de Ouvido", "quantidade": 1, "valor": 56.90},
+        {"id": 3, "produto": "Teclado Gamer", "quantidade": 1, "valor": 111.90},
+    ]
+
+    with open(caminho_arquivo, "w", encoding="utf-8", newline="") as arquivo:
+
+        arquivo_csv = csv.DictWriter(
+            arquivo,
+            # Indicamos as colunas passando uma lista para o parâmetro fieldnames
+            fieldnames=["id", "produto", "quantidade", "valor"],
+            delimiter=';'
+        )
+
+        # O método writeheader() salva as colunas no arquivo. Colunas que foram indicadas no parâmetro fieldnames do DictWriter
+        arquivo_csv.writeheader()
+
+        # Salva no arquivo os dados. Cada linha é um dicionário, que faz parte de uma lista de dicionários
+        arquivo_csv.writerows(lista_de_compras)
