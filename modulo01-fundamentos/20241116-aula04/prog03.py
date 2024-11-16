@@ -36,3 +36,11 @@ if __name__ == "__main__":
             # Essa condição existe para não ser exibida a primeira linha do arquivo
             if i != 1:
                 exibir_info(*linha)
+        print('-'*50)
+        # DictReader
+        with open(caminho_arquivo, 'r', encoding="utf-8") as arquivo:
+
+            arquivo_csv = csv.DictReader(arquivo, delimiter=';')
+
+            for linha in arquivo_csv:
+                exibir_info(**linha)
