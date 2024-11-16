@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
     Podemos indicar o modo de abertura do arquivo, ou seja, o que pretendemos fazer. Os modos de abertura mais comuns são os seguintes:
 
-        r (read|leitura)        -> Abre o arquivo no modo somente-leitura, ou seja, não conseguimos fazer modificações. Caso não indiquemos o modo, esse será o padrão.
+        r (read|leitura)        -> Abre o arquivo no modo somente-leitura, ou seja, não conseguimos fazer modificações. Caso não indiquemos o modo, esse será o padrão. Caso o arquivo não exista, é gerada uma exceção do tipo FileNotFoundError.
         w (write|escrita)       -> Abre o arquivo no modo de escrita. Caso o arquivo não exista, ele é criado. Caso o arquivo já exista, todo o seu conteúdo é apagado e substituído por um novo.
         a (append|acrescentar)  -> Abre o arquivo no modo acrescentar. Caso o arquivo não exista, ele é criado. Caso o arquivo já exista, ele acrescenta o conteúdo a partir do final do arquivo.
 
@@ -41,7 +41,64 @@ if __name__ == "__main__":
     arquivo = open(file=caminho_arquivo)
 
     """
-    Quando abrimos um a
+    Quando abrimos um arquivo no modo de leitura, recebemos um objeto que representa esse arquivo. Com isso, temos acesso a alguns métodos para a leitura do conteúdo do arquivo. No caso abaixo, chamamos o método read(), que lê o conteúdo completo do arquivo e o retorna como um string.
+
+    Na linha abaixo, estamos lendo todo o conteúdo do arquivo linguagens.txt e imprimindo no terminal
     """
     print(arquivo.read())
+
+    """
+    É sempre importante fechar um arquivo depois de abrí-lo, sob o risco de termos comportamentos inesperados no nosso sistema operacional. Então sempre chamamos o método close() de um arquivo depois que terminamos o seu processamento.
+    """
     arquivo.close()
+    print('-'*50)
+
+    """
+    Caso não queiramos fechar um arquivo automaticamente após processá-lo, podemos abrí-lo utilizando o gerenciador de contexto with, da seguinte maneira:
+    """
+    # arquivo = open(caminho_arquivo)
+    with open(caminho_arquivo) as arquivo:
+
+        """
+        O método read() aceita o parâmetro size, que indica a quantidade de bytes que iremos ler do arquivo. No caso de um arquivo texto, é a quantidade de caractes lidos
+        """
+        print(arquivo.read(10))
+
+        """
+        O método readline() lê todos os caractes da linha atual, ou seja, caso seja encontrado o caractere especial de nova linha, ele apenas joga o cursor para a próxima linha.
+
+        Na linha abaixo, apenas de passarmos o valor 100, ele vai ler todos os caractes apenas da linha atual.
+        """
+        print(arquivo.readline(100))
+
+        """
+        Aqui lemos 6 caracteres da linha atual, ou todos os caracteres antes do caractere especial de nova linha
+        """
+        print(arquivo.readline(6))
+        
+        print(f"Posição atual do cursor no arquivo: {arquivo.tell()}")
+
+        """
+        O método readlines lê as linhas do arquivo e as retorna como itens de uma lista. Podemos indicar a quantidade de caracteres que será lida. Mesmo se o cursor não parar no final da linha, a linha inteira será retornada
+        """
+        print(arquivo.readlines(15))
+
+
+        """
+        Lê o resto do conteúdo do arquivo
+        """
+        print(arquivo.readlines())
+
+        print(f"Posição atual do cursor no arquivo: {arquivo.tell()}")
+
+        """
+        Como o cursor está no final do arquivo, qualquer tentativa de ler o seu conteúdo resultará em um retorno de uma string vazia.
+        """
+        print(arquivo.read(10))
+
+        """
+        Se quisermos ler novamente o arquivos, precisamos "rebobinar" o cursor até o início. Para isso, utilizamos o método seek()
+        """
+        arquivo.seek(0)
+
+        print(arquivo.read())

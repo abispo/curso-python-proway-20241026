@@ -1,5 +1,10 @@
 Python
 PHP
-Java
+Coldfusion
 C#
 Golang
+Javascript
+Perl
+Ruby
+C++
+Rust
