@@ -32,3 +32,10 @@ if __name__ == "__main__":
     with open(arquivo_numeros, "w", encoding="utf-8") as arquivo:
         for numero in numeros:
             arquivo.write(f"{numero}\n")
+
+    with open(arquivo_numeros, mode='a', encoding="utf-8") as arquivo:
+        arquivo.writelines([
+            "Números da loteria federal\n",
+            "Concurso 1111\n",
+            "Números gerados aleatoriamente\n",
+        ])
