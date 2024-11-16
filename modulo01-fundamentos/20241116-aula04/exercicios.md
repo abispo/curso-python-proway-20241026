@@ -19,7 +19,7 @@ Além disso, essas informações devem ser salvas em um arquivo csv (nomes.csv),
 
 Dica: Salve os dados em um dicionário e utilize a função built-in `sorted()` para mostrar na ordem correta (https://www.w3schools.com/python/ref_func_sorted.asp).
 
-3. Crie um script que abra o arquivo `notas.csv` e leia o seu conteúdo. O arquivo possui uma lista de nomes de alunos e as suas respectivas notas em trabalhos. Depois de ler esse arquivo, o script deve mostrar:
+2. Crie um script que abra o arquivo `notas.csv` e leia o seu conteúdo. O arquivo possui uma lista de nomes de alunos e as suas respectivas notas em trabalhos. Depois de ler esse arquivo, o script deve mostrar:
 * A quantidade total de alunos
 * Os 10 alunos com as maiores médias
 Detalhe: As médias são calculadas excluindo a melhor e a pior nota de cada aluno. Ou seja, a média é calculada utilizando as 3 notas intermediárias.
