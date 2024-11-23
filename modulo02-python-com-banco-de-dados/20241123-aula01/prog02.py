@@ -5,19 +5,24 @@
 import csv
 import os
 
+from dotenv import load_dotenv
+
 import pymysql
 import pymysql.cursors
 import requests
 
+# A função load_dotenv carrega informações do arquivo .env e as transforma em variáveis de ambiente. Isso é imprescindível quando estamos lidando com credenciais de acesso a quaisquer tipos de serviço. No caso abaixo, substituímos as credenciais de acesso a leitura das variáveis de ambiente. Dessa forma, não corremos o risco de expor informações confidenciais.
+load_dotenv()
+
 if __name__ == "__main__":
     
     connection = pymysql.connect(
-        host="localhost",
-        user="root",
-        password="admin",
-        database="modulo02_python",
+        host=os.getenv("DATABASE_HOST"),
+        user=os.getenv("DATABASE_USER"),
+        password=os.getenv("DATABASE_PASSWORD"),
+        database=os.getenv("DATABASE_NAME"),
         charset="utf8mb4",
-        cursorclass=pymysql.cursors.DictCursor  # Retora uma lista de dicionários como resposta
+        cursorclass=pymysql.cursors.DictCursor  # Retorna uma lista de dicionários como resposta
     )
 
     cursor = connection.cursor()
