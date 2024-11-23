@@ -29,4 +29,4 @@ if __name__ == "__main__":
 
     cursor.execute(comando)
 
-    url_arquivo_cursos = "https://raw.githubusercontent.com/abispo/shared-files/refs/heads/main/modulo02/cursos.csvs"
+    url_arquivo_cursos = "https://raw.githubusercontent.com/abispo/shared-files/refs/heads/main/modulo02/cursos.csv"
