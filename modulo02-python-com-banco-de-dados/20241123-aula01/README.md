@@ -2,23 +2,25 @@
 
 ## Trabalhando com a Biblioteca sqlite3
 
+* Os arquivos estão em https://github.com/abispo/shared-files/tree/main/modulo02. Utilize a biblioteca `requests` para baixá-los.
+
 ### Desafio 1
 
 Ler o arquivo `cursos.csv` e salvar os dados na tabela `tb_cursos`. Essa tabela deve ter a seguinte estrutura.
 
 ```
-id              INT     PRIMARY KEY AUTOINCREMENT
-curso           TEXT    NOT NULL
-carga_horaria   INT     NOT NULL
-preco           REAL    NOT NULL
+id              INT         PRIMARY KEY AUTOINCREMENT
+curso           VARCHAR     NOT NULL
+carga_horaria   INT         NOT NULL
+preco           FLOAT       NOT NULL
 ```
 
-Após os dados terem sido salvos, vamos salvar uma nova tabela chamada `tb_estatisticas_cursos`, que terá as seguintes colunas:
+Após os dados terem sido salvos, vamos criar uma nova tabela chamada `tb_estatisticas_cursos`, que terá as seguintes colunas:
 
 ```
-qtd_cursos      INTEGER
-curso_maior_carga_horaria: TEXT
-curso_com_maior_valor: TEXT
+qtd_cursos                  INT
+curso_maior_carga_horaria:  VARCHAR
+curso_com_maior_valor:      VARCHAR
 
 Após salvar, mostrar esses dados na tela. Exemplo:
 
@@ -34,21 +36,21 @@ Ler o arquivo `notas.csv` e salvar as informações na tabela `tb_notas`. Essa t
 
 ```
 id          INTEGER     PRIMARY KEY     AUTOINCREMENT
-nome        TEXT        NOT NULL
-nota1       REAL        NOT NULL
-nota2       REAL        NOT NULL
-nota3       REAL        NOT NULL
-nota4       REAL        NOT NULL
-nota5       REAL        NOT NULL
+nome        VARCHAR         NOT NULL
+nota1       FLOAT           NOT NULL
+nota2       FLOAT           NOT NULL
+nota3       FLOAT           NOT NULL
+nota4       FLOAT           NOT NULL
+nota5       FLOAT           NOT NULL
 ```
 
 Após os dados terem sido salvos, vamos criar uma tabela com estatísticas, chamada `tb_estatisticas_notas`. A tabela terá a seguinte estrutura:
 
 ```
-quantidade_de_alunos        INT     NOT NULL
-media_geral                 REAL    NOT NULL
-maior_media                 REAL    NOT NULL
-aluno_maior_media           TEXT    NOT NULL
+quantidade_de_alunos        INT         NOT NULL
+media_geral                 FLOAT       NOT NULL
+maior_media                 FLOAT       NOT NULL
+aluno_maior_media           VARCHAR     NOT NULL
 ```
 
 Importante: A média de cada aluno será calculada excluindo a maior e a menor notas. Exemplo:
