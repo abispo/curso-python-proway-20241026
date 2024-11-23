@@ -86,3 +86,9 @@ if __name__ == "__main__":
     comando = "UPDATE tb_alunos SET curso = 'C#' WHERE cidade = 'Blumenau';"
     cursor.execute(comando)
     connection.commit()
+
+    # Apagar registros
+    # Apaga todas as linhas que tenham a coluna Curso igual a Java
+    comando = "DELETE FROM tb_alunos WHERE curso = 'Java';"
+    cursor.execute(comando)
+    connection.commit()
