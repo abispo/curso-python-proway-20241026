@@ -12,11 +12,11 @@ PS: As colunas que contém asterisco (*) são as chaves primárias das tabelas
 
 #### tb_pedidos
 
-| *pedido_id | nome_cliente  | produto                  | quantidade |
-|-----------|---------------|--------------------------|------------|
-| 1         | João Silva    | Camisa, Caneca           | 2, 1       |
-| 2         | Jane Smith    | Adesivo, Caneca, Cantil  | 1, 3, 2    |
-| 3         | Sara Correa   | Cafeteira                | 1          |
+| *pedido_id | produto                  | quantidade |
+|-----------|--------------------------|------------|
+| 1         | Camisa, Caneca           | 2, 1       |
+| 2         | Adesivo, Caneca, Cantil  | 1, 3, 2    |
+| 3         | Cafeteira                | 1          |
 
 ---
 
