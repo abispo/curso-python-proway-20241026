@@ -88,3 +88,37 @@ INSERT INTO tb_clientes(
 ("João da Silva", "Rua", "XV de Novembro", "1000", "Centro", "Blumenau", "SC"),
 ("Neide Carvalho", "Praça", "da Liberdade", "12", "Liberdade", "São Paulo", "SP"),
 ("Maria Souza", "Rua", "dos Bandeirantes", "240", "Centro", "Pomerode", "SC");
+
+SELECT * FROM tb_clientes;
+
+INSERT INTO tb_telefones (cliente_id, telefone) VALUES
+    (1, "47934985902"),
+    (2, "11966739200"),
+    (2, "11977728344"),
+    (3, "47900982361");
+SELECT * FROM tb_telefones;
+
+# A linha abaixo não executará, pois irá acontecer um erro de chave estrangeira
+# Não existe um cliente com id 1000 na tabela de clientes
+INSERT INTO tb_telefones(cliente_id, telefone) VALUES
+    (1000, "47944811095");
+    
+# Como as tabelas tb_clientes e tb_telefones estão relacionadas, podemos utilizar
+# os joins para consultar informações das 2 tabelas ao mesmo tempo
+SELECT tb_clientes.nome, tb_telefones.telefone
+    FROM tb_clientes
+    INNER JOIN tb_telefones
+ON tb_clientes.id = tb_telefones.cliente_id;
+
+# Inserindo cliente que não possui telefone
+INSERT INTO tb_clientes(
+    nome, tipo_logradouro, logradouro, numero, bairro, cidade, uf
+) VALUES
+    ("José Goulart", "Rua", "dos Caçadores", "4000", "Testo Central", "Pomerode", "SC");
+SELECT * FROM tb_clientes;
+
+# Dessa vez, utilizaremos apelidos (aliases) para as tabelas
+SELECT tc.id, tc.nome, tt.telefone
+    FROM tb_clientes tc
+    INNER JOIN tb_telefones tt
+ON tc.id = tt.cliente_id;
