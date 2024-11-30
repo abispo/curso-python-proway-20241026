@@ -122,3 +122,12 @@ SELECT tc.id, tc.nome, tt.telefone
     FROM tb_clientes tc
     INNER JOIN tb_telefones tt
 ON tc.id = tt.cliente_id;
+
+# Trazendo também os clientes que não possuem telefones cadastrados
+SELECT tc.id, tc.nome, tt.telefone
+    FROM tb_clientes tc
+    LEFT JOIN tb_telefones tt
+ON tc.id = tt.cliente_id
+# A linha abaixo mostra apenas os clientes que não possuem telefone cadastrado
+# Descomente a linha e execute o comando
+-- WHERE tt.cliente_id IS NULL;
