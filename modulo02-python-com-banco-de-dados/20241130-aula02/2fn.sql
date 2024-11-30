@@ -15,7 +15,7 @@ USE 20241130_modulo02_python;
 
 # Criação da tabela tb_controle_servico. Essa tabela terá uma chave primária
 # composta, ou seja, uma chave primária criada a partir de 2 colunas ou mais.
-CREATE TABLE IF NOT EXISTS tb_controle_servico(
+CREATE TABLE IF NOT EXISTS tb_controle_servicos(
     id INT AUTO_INCREMENT,
     servico_id INT NOT NULL,
     servico VARCHAR(100) NOT NULL,
@@ -24,16 +24,16 @@ CREATE TABLE IF NOT EXISTS tb_controle_servico(
     PRIMARY KEY(id, servico_id)
 );
 
-DESC tb_controle_servico;
+DESC tb_controle_servicos;
 
-INSERT INTO tb_controle_servico(servico_id, servico, valor_hora, total_horas)
+INSERT INTO tb_controle_servicos(servico_id, servico, valor_hora, total_horas)
 VALUES
     (1, "Manutenção de PC", 80, 6),
     (1, "Manutenção de PC", 80, 10),
     (2, "Desenvolvimento de Site", 150, 10),
     (3, "Configuração de Servidor", 100, 3),
     (4, "Aulas de Programação Java", 60, 8);
-SELECT * FROM tb_controle_servico tcs ;
+SELECT * FROM tb_controle_servicos tcs ;
 
 /*
  * No caso acima, a tabela tb_controle_servico está na 1FN, pois possui uma
@@ -49,4 +49,44 @@ SELECT * FROM tb_controle_servico tcs ;
  * tabela.
  */
 
+RENAME tb_controle_servicos TO tb_controle_servicos_pre_2fn;
 
+# Criação da tabela de serviços
+CREATE TABLE IF NOT EXISTS tb_servicos(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    servico VARCHAR(100) NOT NULL,
+    valor_hora FLOAT NOT NULL
+);
+INSERT INTO tb_servicos (servico, valor_hora) VALUES
+    ("Manutenção de PC", 80),
+    ("Desenvolvimento de Site", 150),
+    ("Configuração de Servidor", 100),
+    ("Aulas de Programação Java", 60);
+SELECT * FROM tb_servicos ts ;
+
+CREATE TABLE IF NOT EXISTS tb_controle_servicos(
+    id INT AUTO_INCREMENT,
+    servico_id INT NOT NULL,
+    total_horas INT NOT NULL,
+    PRIMARY KEY (id, servico_id),
+    FOREIGN KEY(servico_id) REFERENCES tb_servicos(id)
+);
+
+# Inserção dos dados na tabela de controle
+INSERT INTO tb_controle_servicos (servico_id, total_horas) VALUES
+    (1, 6),
+    (1, 10),
+    (2, 10),
+    (3, 3),
+    (4, 12);
+SELECT * FROM tb_controle_servicos tcs ;
+
+SELECT
+    ts.id,
+    ts.servico,
+    ts.valor_hora,
+    tcs.total_horas,
+    ts.valor_hora * tcs.total_horas AS "Valor a ser pago"
+FROM tb_servicos ts 
+INNER JOIN tb_controle_servicos tcs 
+ON ts.id = tcs.servico_id;
