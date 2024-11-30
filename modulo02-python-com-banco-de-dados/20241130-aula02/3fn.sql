@@ -3,7 +3,9 @@
  * 
  * Para uma tabela estar na 3FN, é necessário que:
  * -> Ela esteja na 2FN
- * -> Todas as colunas não chave da tabela dependem exclusivamente da chave primária (dependência transitiva)
+ * -> Todas as colunas não chave da tabela dependem exclusivamente da chave primária.
+ * Caso exista uma coluna não chave que dependa de outra coluna não chave,
+ * temos uma dependência transitiva
  * 
  */
 
@@ -49,3 +51,39 @@ CREATE TABLE IF NOT EXISTS tb_pedidos_produtos(
     FOREIGN KEY(produto_id) REFERENCES tb_produtos(id)
 );
 DESC tb_pedidos_produtos;
+
+INSERT INTO tb_pedidos_produtos(
+    pedido_id, produto_id, quantidade, subtotal 
+) VALUES
+    (1, 1, 3, 267),
+    (1, 2, 1, 9.90),
+    (2, 3, 1, 14.90),
+    (2, 4, 1, 79.90),
+    (2, 1, 1, 89.90);
+SELECT * FROM tb_pedidos_produtos tpp ;
+
+/*
+ * A coluna subtotal, apesar de depender de todas AS partes da chave primária,
+ * também depende de uma coluna não chave, que é a quantidade. Nesse caso, devemos
+ * remover essa coluna da tabela e a calcular NO momento de execução da consulta.
+*/
+
+-- O comando ALTER TABLE altera a estrutura de uma tabela
+ALTER TABLE tb_pedidos_produtos DROP COLUMN subtotal;
+
+-- Trazendo os dados das tabelas, calculando o subtotal
+SELECT
+    tpi.id,
+    tpi.data_pedido,
+    tpd.nome,
+    tpd.valor_unitario,
+    tpp.quantidade,
+    -- Cálculo do subtotal.     
+    tpd.valor_unitario * tpp.quantidade AS "subtotal"
+FROM tb_pedidos tpi
+INNER JOIN tb_pedidos_produtos tpp 
+ON tpi.id = tpp.pedido_id
+INNER JOIN tb_produtos tpd
+ON tpp.produto_id = tpd.id;
+
+-- Com isso, deixamos de ter uma coluna do subtotal, e calculamos diretamente na consulta
