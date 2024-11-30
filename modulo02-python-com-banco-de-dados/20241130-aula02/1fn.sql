@@ -81,3 +81,10 @@ CREATE TABLE IF NOT EXISTS tb_telefones(
     telefone VARCHAR(20) NOT NULL,
     FOREIGN KEY(cliente_id) REFERENCES tb_clientes(id)
 );
+
+INSERT INTO tb_clientes(
+    nome, tipo_logradouro, logradouro, numero, bairro, cidade, uf
+) VALUES
+("João da Silva", "Rua", "XV de Novembro", "1000", "Centro", "Blumenau", "SC"),
+("Neide Carvalho", "Praça", "da Liberdade", "12", "Liberdade", "São Paulo", "SP"),
+("Maria Souza", "Rua", "dos Bandeirantes", "240", "Centro", "Pomerode", "SC");
