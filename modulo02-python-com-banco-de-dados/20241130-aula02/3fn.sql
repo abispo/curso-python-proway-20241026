@@ -39,4 +39,13 @@ INSERT INTO tb_produtos (nome, valor_unitario) VALUES
 SELECT * FROM tb_produtos tp ;
 
 # Crição da tabela que irá relacionar os pedidos com os produtos
-
+CREATE TABLE IF NOT EXISTS tb_pedidos_produtos(
+    pedido_id INT NOT NULL,
+    produto_id INT NOT NULL,
+    quantidade INT NOT NULL,
+    subtotal INT NOT NULL,
+    PRIMARY KEY(pedido_id, produto_id),
+    FOREIGN KEY(pedido_id) REFERENCES tb_pedidos(id),
+    FOREIGN KEY(produto_id) REFERENCES tb_produtos(id)
+);
+DESC tb_pedidos_produtos;
