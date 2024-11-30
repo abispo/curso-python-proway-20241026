@@ -73,12 +73,12 @@ PS: As colunas que contém asterisco (*) são as chaves primárias das tabelas
 
 ### Aplique a Terceira Forma Normal nas seguintes tabelas
 
-| Disciplina       | Aluno           | Nota 1 | Nota 2 | Nota 3 | Média |
-|------------------|-----------------|--------|--------|--------|-------|
-| Estatística      | João Silva      | 8.5    | 9.0    | 8.5    | 8.6   |
-| Matemática       | Maiara Nogueira | 10.0   | 9.5    | 9.5    | 9.6   |
-| Java             | Danielle Souza  | 7.5    | 7.5    | 7.0    | 7.3   |
-| Ciência de Dados | José Duarte     | 6.5    | 5.5    | 7.5    | 6.5   |
+| *ID | Disciplina | Aluno           | Nota 1 | Nota 2 | Nota 3 | Média |
+|-----|------------|-----------------|--------|--------|--------|-------|
+|    1| Estatística      | João Silva      | 8.5    | 9.0    | 8.5    | 8.6   |
+|    2| Matemática       | Maiara Nogueira | 10.0   | 9.5    | 9.5    | 9.6   |
+|    3| Java             | Danielle Souza  | 7.5    | 7.5    | 7.0    | 7.3   |
+|    4| Ciência de Dados | José Duarte     | 6.5    | 5.5    | 7.5    | 6.5   |
 
 ---
 
