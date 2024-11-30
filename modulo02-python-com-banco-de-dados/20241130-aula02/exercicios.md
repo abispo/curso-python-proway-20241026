@@ -1,5 +1,7 @@
 # Exercícios Formas Normais
 
+Você deve criar as tabelas no banco de dados, aplicando as formas normais.
+
 ## Primeira Forma Normal (1FN)
 
 ### Aplique a primeira forma normal nas seguintes tabelas:
