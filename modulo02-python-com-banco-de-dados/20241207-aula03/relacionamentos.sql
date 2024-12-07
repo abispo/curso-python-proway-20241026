@@ -172,3 +172,11 @@ SELECT tp.titulo, tc.nome
 -- Como vimos acima, quando temos um relacionamento N:N, para mantermos a confiabilidade e a otimização dos dados nas tabelas, criamos uma outra tabela que chamamos de tabela associativa, que irá associar os dados das tabelas A e B.
 
 -- Desafio: Temos que criar uma estrutura para armazenar os comentários que podem ser feitos em cada postagem. Cada comentário terá um id, o id do usuário que fez esse comentário, e o texto do comentário. Crie a tabela para armazenamento e também o(s) relacionamento(s) necessário(s).
+CREATE TABLE IF NOT EXISTS tb_comentarios(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    postagem_id int NOT NULL,
+    usuario_id INT NOT NULL,
+    texto VARCHAR(200) NOT NULL,
+    FOREIGN KEY(postagem_id) REFERENCES tb_postagens(id),
+    FOREIGN KEY(usuario_id) REFERENCES tb_usuarios(id)
+);
