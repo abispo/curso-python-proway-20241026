@@ -171,4 +171,4 @@ SELECT tp.titulo, tc.nome
 
 -- Como vimos acima, quando temos um relacionamento N:N, para mantermos a confiabilidade e a otimização dos dados nas tabelas, criamos uma outra tabela que chamamos de tabela associativa, que irá associar os dados das tabelas A e B.
 
--- Desafio: Temos que criar uma estrutura para armazenar os comentários que podem ser feitos em cada postagem. Cara comentário terá um id, o id do usuário que fez esse comentário, e o texto do comentário. Crie a tabela para armazenamento e também o(s) relacionamento(s) necessário(s).
+-- Desafio: Temos que criar uma estrutura para armazenar os comentários que podem ser feitos em cada postagem. Cada comentário terá um id, o id do usuário que fez esse comentário, e o texto do comentário. Crie a tabela para armazenamento e também o(s) relacionamento(s) necessário(s).
