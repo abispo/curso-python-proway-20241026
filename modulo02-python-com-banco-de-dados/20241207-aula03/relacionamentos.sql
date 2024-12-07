@@ -138,3 +138,35 @@ INSERT INTO tb_categorias(nome) VALUES
     ("arduino"),
     ("powerbi"),
     ("linux");
+
+-- Nesse caso, teremos uma relação de N:N (Muitos para muitos) entre as tabelas tb_postagens e tb_categorias. Quando temos esse tipo de relacionamento, sobre obrigados a criar uma outra tabela, que chamaremos de tabela associativa. Essa tabela será responsável por associar as postagens com as categorias. Vamos criar a tabela tb_postagens_categorias
+
+CREATE TABLE IF NOT EXISTS tb_postagens_categorias(
+    postagem_id INT NOT NULL,
+    categoria_id INT NOT NULL,
+    PRIMARY KEY(postagem_id, categoria_id),
+    FOREIGN KEY(postagem_id) REFERENCES tb_postagens(id),
+    FOREIGN KEY(categoria_id) REFERENCES tb_categorias(id)
+);
+
+-- Associar algumas categorias às postagens
+INSERT INTO tb_postagens_categorias(postagem_id, categoria_id) VALUES
+    (1, 1),
+    (1, 2),
+    (1, 5),
+    (1, 6),
+    (2, 1),
+    (2, 3),
+    (2, 5),
+    (2, 6);
+
+-- A consulta abaixo trás todas as postagens onde exista a categoria 'java' associada.
+SELECT tp.titulo, tc.nome
+    FROM tb_postagens tp
+    INNER JOIN tb_postagens_categorias tpc
+    ON tp.id = tpc.postagem_id
+    INNER JOIN tb_categorias tc
+    ON tpc.categoria_id = tc.id
+    WHERE tc.nome = 'java';
+
+-- Como vimos acima, quando temos um relacionamento N:N, para mantermos a confiabilidade e a otimização dos dados nas tabelas, criamos uma outra tabela que chamamos de tabela associativa, que irá associar os dados das tabelas A e B.
