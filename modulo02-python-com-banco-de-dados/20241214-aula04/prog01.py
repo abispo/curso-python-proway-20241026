@@ -26,10 +26,36 @@ class Pokemon:
     def evolve(self):
         print(f"{self._name} evolui!")
 
+    # Como não é indicado acessar diretamente os atributos que indicamos como privado, podemos seguir um padrão bastante utilizado em outras linguagens, que é a criação de getters e setters para os atributos
+    def get_health(self):
+        return self._health
+
+    def set_health(self, new_health):
+        self._health = new_health
+
+    # Porém, o python tem uma maneira própria que podemos utilizar para definir os métodos de acesso (getters e setters), que é pelo uso do decorator property
+    @property
+    def health(self):
+        return self._health
+    
+    @health.setter
+    def health(self, new_health):
+        self._health = new_health
+    
 if __name__ == "__main__":
-    # Nas linhas abaixo estamos instânciando 2 objetos do tipo Pokemon. Os objetos estão sendo inicializados com os parâmetros. Vale reforçar que são objetos diferentes.
+    # Nas linhas abaixo estamos instanciando 2 objetos do tipo Pokemon. Os objetos estão sendo inicializados com os parâmetros. Vale reforçar que são objetos diferentes.
     pikachu = Pokemon(name="Pikachu", pokemon_type="Elétrico", health=60)
     charmander = Pokemon(name="Charmander", pokemon_type="Fogo", health=50)
 
     pikachu.attack()
     charmander.dodge()
+
+    # Utilizando os getters e setters
+    print(pikachu.get_health())
+    pikachu.set_health(40)
+    print(pikachu.get_health())
+    print('*'*20)
+    # Utilizando o decorator
+    print(pikachu.health)
+    pikachu.health = 45
+    print(pikachu.health)
