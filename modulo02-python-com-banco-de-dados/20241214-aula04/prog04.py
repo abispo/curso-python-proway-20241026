@@ -67,7 +67,7 @@ class FolhaDePagamento:
             print("= Dados do Funcionário")
             print(f"= Nome: {nome_funcionario}")
             print(f"= Tipo: {tipo_funcionario}")
-            print(f"= Salário: {salario_funcionario}")
+            print(f"= Salário: {salario_funcionario:.2f}")
             print("="*30)
 
 if __name__ == "__main__":
