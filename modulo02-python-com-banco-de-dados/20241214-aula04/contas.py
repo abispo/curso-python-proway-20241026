@@ -42,8 +42,12 @@ class ContaCorrente(ContaFinanceira):
 
 class ContaInvestimento(ContaFinanceira):
 
+    # Na classe ContaInvestimento está sendo criado o método __init__. Como esse método já está criado na classe que estamos herdando (ContaFinanceira), esse método herdado será substituído pelo método criado na classe filha
     def __init__(self, nome: str, taxa: float, saldo: float = 0) -> None:
         self._taxa = taxa
+
+        # A função built-in super() serve para chamar qualquer método definido na classe mãe. Nesse caso, como o método __init__ da classe mãe inicializa alguns atributos, vamos chamá-lo. Isso evita termos que duplicar os atributos entre as classes filhas.
+        # A ordem que essa função é chamada não importa
         super().__init__(nome, saldo)
 
     def render(self) -> float:
