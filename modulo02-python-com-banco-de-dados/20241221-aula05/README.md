@@ -38,3 +38,4 @@ No caso da tabela associativa, a sua estrutura não precisa ser igual as outras.
 Observações:
 * Para os nomes das tabelas, utilize o padrão que foi utilizado para `Usuario` e `Perfil`. Por exemplo, a tabela associada a model `Postagem` se chamará `postagens`
 * Para cada model, crie os atributos do tipo `relationship` correspondentes.
+* Crie as estruturas restantes de gerenciamento. Ou seja, crie funções para selecionar, inserir, atualizar o apagar os registros. Tente também adicionar a opção do usuário selecionar passando algum parâmetro, por exemplo, selecionar um usuário a partir do e-mail.
