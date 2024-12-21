@@ -21,3 +21,13 @@ class Usuario(Base):
 
     # Será criada uma coluna de nome senha, do tipo varchar(100), que não aceita valores nulos
     senha: Mapped[str] = mapped_column(String(100), nullable=False)
+
+
+class Perfil(Base):
+
+    __tablename__ = "perfis"
+
+    id: Mapped[int] = mapped_column(Integer, ForeignKey("usuarios.id"), primary_key=True)
+    nome: Mapped[str] = mapped_column(String(50), nullable=False)
+    sobrenome: Mapped[str] = mapped_column(String(100), nullable=False)
+    data_de_nascimento: Mapped[date] = mapped_column(Date, nullable=True)
