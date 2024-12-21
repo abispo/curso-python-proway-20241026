@@ -27,7 +27,7 @@ SQLAlchemy é um ORM (Object Relational Mapper/Mapeador Objeto Relacional) para 
 
 No caso da tabela associativa, a sua estrutura não precisa ser igual as outras. Utilize a classe `Table` para criá-la. Você pode seguir a documentação em https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html#setting-bi-directional-many-to-many
 
-4. Criar a model `Comentário`, que terá a seguinte estrutura:
+4. Criar a model `Comentario`, que terá a seguinte estrutura:
     | nome         | tipo | observações                        
     |--------------|------|------------------------------------------------------|
     | id           | int  | chave primária, auto incremento                      |
