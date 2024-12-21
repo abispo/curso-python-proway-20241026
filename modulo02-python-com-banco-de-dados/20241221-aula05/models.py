@@ -22,6 +22,7 @@ class Usuario(Base):
     # Será criada uma coluna de nome senha, do tipo varchar(100), que não aceita valores nulos
     senha: Mapped[str] = mapped_column(String(100), nullable=False)
 
+    # Abaixo criamos um atributo do tipo relationship. Esse tipo de atributo serve para carregar automaticamente o(s) objeto(s) relacionado(s) a essa model. Nesse caso, o atributo perfil vai carregar o objeto Perfil associado ao objeto Usuario.
     perfil: Mapped["Perfil"] = relationship(back_populates="usuario")
 
     def __repr__(self) -> str:

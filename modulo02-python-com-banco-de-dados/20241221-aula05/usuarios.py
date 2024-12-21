@@ -26,6 +26,7 @@ def selecionar_usuarios():
         #     select(Perfil).where(Perfil.id == usuario.id)
         # ).scalar_one()
 
+        # Devido a criação dos atributos do tipo relationship, não é mais necessário carregarmos explicitamente o perfil associado ao usuario atual, como feito acima. Podemos fazer isso simplesmente chamando o atributo 'perfil' do objeto 'usuario'
         print(f"Nome: {usuario.perfil.nome} {usuario.perfil.sobrenome}")
         print(f"Data de Nascimento: {usuario.perfil.data_de_nascimento}")
         print('*'*50)
