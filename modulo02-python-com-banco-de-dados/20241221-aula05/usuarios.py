@@ -4,6 +4,31 @@ from config import session
 from mensagens import MENU_USUARIOS
 from models import Usuario, Perfil
 
+def selecionar_usuarios():
+
+    # comando = "SELECT usuarios.id, usuarios.email, usuarios.senha FROM usuarios;"
+    comando = select(Usuario)
+
+    # result = cursor.execute(comando).fetchall()
+    result = session.execute(comando).scalars()
+
+    # O método scalars() retorna um objeto iterável, que não traz todas as linhas da consulta de uma vez só. Esses resultados serão trazidos quando iterarmos esse objeto. Caso queiramos trazer o resultado como uma lista de objetos, devemos utilizar o método .all() logo após o .scalars()
+    # result = session.execute(comando).scalars().all()
+
+    # for usuario in result
+    for usuario in result:
+        print(f"E-mail: {usuario.email}.")
+    
+        # Pegar os dados de perfil
+        # A função select retorna um objeto do tipo Select, que por sua vez tem um método chamado where(). No where passamos as condições para o retorno dos dados. No caso abaixo, a consulta trará todas as linhas da tabela perfis que tenham o id igual ao valor do atributo id do objeto Usuario atual.
+        # Como estamos tratando de um relacionamento 1:1, utilizamos o método scalar_one(), que trará apenas 1 linha do resultado.
+        perfil = session.execute(
+            select(Perfil).where(Perfil.id == usuario.id)
+        ).scalar_one()
+        print(f"Nome: {perfil.nome} {perfil.sobrenome}")
+        print(f"Data de Nascimento: {perfil.data_de_nascimento}")
+        print('*'*50)
+
 def inserir_usuario(email, senha, nome, sobrenome, data_de_nascimento) -> None:
     # Para inserção de um dado na tabela, precisamos instanciar a model, informando os valores dos seus atributos
     usuario = Usuario(email=email, senha=senha)
@@ -36,7 +61,7 @@ def gerenciar_usuarios():
                 break
 
             case 2:
-                pass
+                selecionar_usuarios()
 
             case 3:
                 email = input("Informe o e-mail do usuário: ")
@@ -50,7 +75,7 @@ def gerenciar_usuarios():
                     senha=senha,
                     nome=nome,
                     sobrenome=sobrenome,
-                    data_de_nascimento=data_de_nascimento
+                    data_de_nascimento=data_de_nascimento if data_de_nascimento else None
                 )
 
                 print("USUÁRIO SALVO COM SUCESSO!")
