@@ -15,7 +15,12 @@ def inserir_usuario(email, senha, nome, sobrenome, data_de_nascimento) -> None:
     session.commit()
 
     # Salvando os dados do perfil associado a esse usuário
-    perfil = Perfil(nome=nome, sobrenome=sobrenome, data_de_nascimento=data_de_nascimento)
+    perfil = Perfil(
+        id=usuario.id,
+        nome=nome,
+        sobrenome=sobrenome,
+        data_de_nascimento=data_de_nascimento
+    )
     session.add(perfil)
     session.commit()
 
