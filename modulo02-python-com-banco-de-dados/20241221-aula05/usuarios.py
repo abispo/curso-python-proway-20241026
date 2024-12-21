@@ -22,11 +22,12 @@ def selecionar_usuarios():
         # Pegar os dados de perfil
         # A função select retorna um objeto do tipo Select, que por sua vez tem um método chamado where(). No where passamos as condições para o retorno dos dados. No caso abaixo, a consulta trará todas as linhas da tabela perfis que tenham o id igual ao valor do atributo id do objeto Usuario atual.
         # Como estamos tratando de um relacionamento 1:1, utilizamos o método scalar_one(), que trará apenas 1 linha do resultado.
-        perfil = session.execute(
-            select(Perfil).where(Perfil.id == usuario.id)
-        ).scalar_one()
-        print(f"Nome: {perfil.nome} {perfil.sobrenome}")
-        print(f"Data de Nascimento: {perfil.data_de_nascimento}")
+        # perfil = session.execute(
+        #     select(Perfil).where(Perfil.id == usuario.id)
+        # ).scalar_one()
+
+        print(f"Nome: {usuario.perfil.nome} {usuario.perfil.sobrenome}")
+        print(f"Data de Nascimento: {usuario.perfil.data_de_nascimento}")
         print('*'*50)
 
 def inserir_usuario(email, senha, nome, sobrenome, data_de_nascimento) -> None:

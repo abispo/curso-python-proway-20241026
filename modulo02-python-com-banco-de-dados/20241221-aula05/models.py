@@ -1,7 +1,7 @@
 from datetime import date
 
 from sqlalchemy import Integer, String, ForeignKey, Date
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from config import Base
 
@@ -22,6 +22,11 @@ class Usuario(Base):
     # Será criada uma coluna de nome senha, do tipo varchar(100), que não aceita valores nulos
     senha: Mapped[str] = mapped_column(String(100), nullable=False)
 
+    perfil: Mapped["Perfil"] = relationship(back_populates="usuario")
+
+    def __repr__(self) -> str:
+        return f"<Usuario {self.email}>"
+
 
 class Perfil(Base):
 
@@ -31,3 +36,8 @@ class Perfil(Base):
     nome: Mapped[str] = mapped_column(String(50), nullable=False)
     sobrenome: Mapped[str] = mapped_column(String(100), nullable=False)
     data_de_nascimento: Mapped[date] = mapped_column(Date, nullable=True)
+
+    usuario: Mapped["Usuario"] = relationship(back_populates="perfil")
+
+    def __repr__(self) -> str:
+        return f"<Perfil '{self.nome} {self.sobrenome}'>"
