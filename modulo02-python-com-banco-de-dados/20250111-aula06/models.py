@@ -1,6 +1,6 @@
 from datetime import date
 
-from sqlalchemy import Integer, String, ForeignKey, Date
+from sqlalchemy import Integer, String, ForeignKey, Date, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from config import Base
@@ -25,6 +25,9 @@ class Usuario(Base):
     # Abaixo criamos um atributo do tipo relationship. Esse tipo de atributo serve para carregar automaticamente o(s) objeto(s) relacionado(s) a essa model. Nesse caso, o atributo perfil vai carregar o objeto Perfil associado ao objeto Usuario.
     perfil: Mapped["Perfil"] = relationship(back_populates="usuario")
 
+    # O parâmetro uselist=True indica que esse atributo irá retornar uma lista de objetos Perfil associados ao objeto Usuario atual. Caso o usuário não tenha feito postagens, será retornada uma lista vazia.
+    postagens: Mapped["Postagem"] = relationship(back_populates="usuario", uselist=True)
+
     def __repr__(self) -> str:
         return f"<Usuario {self.email}>"
 
@@ -42,3 +45,17 @@ class Perfil(Base):
 
     def __repr__(self) -> str:
         return f"<Perfil '{self.nome} {self.sobrenome}'>"
+
+class Postagem(Base):
+
+    __tablename__ = "postagens"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    usuario_id: Mapped[int] = mapped_column(Integer, ForeignKey("usuarios.id"), nullable=False)
+    titulo: Mapped[str] = mapped_column(String(100), nullable=False)
+    texto: Mapped[str] = mapped_column(Text, nullable=False)
+    
+    usuario: Mapped["Usuario"] = relationship(back_populates="postagens")
+
+    def __repr__(self):
+        return f"<Postagem({self.id}) '{self.titulo}'>"
