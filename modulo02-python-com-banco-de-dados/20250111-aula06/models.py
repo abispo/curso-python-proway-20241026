@@ -1,9 +1,17 @@
 from datetime import date
+from typing import List
 
-from sqlalchemy import Integer, String, ForeignKey, Date, Text
+from sqlalchemy import Integer, String, ForeignKey, Date, Text, Column, Table
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from config import Base
+
+postagens_categorias = Table(
+    "postagens_categorias",
+    Base.metadata,
+    Column("postagem_id", ForeignKey("postagens.id"), primary_key=True),
+    Column("categoria_id", ForeignKey("categorias.id"), primary_key=True)
+)
 
 # Aqui criamos a model Usuario. O termo model refere-se a classes que serão mapeadas para tabelas no banco de dados. No nosso caso, sempre que quisermos criar uma model, obrigatoriamente devemos herdar de Base
 class Usuario(Base):
@@ -46,6 +54,7 @@ class Perfil(Base):
     def __repr__(self) -> str:
         return f"<Perfil '{self.nome} {self.sobrenome}'>"
 
+
 class Postagem(Base):
 
     __tablename__ = "postagens"
@@ -57,5 +66,19 @@ class Postagem(Base):
     
     usuario: Mapped["Usuario"] = relationship(back_populates="postagens")
 
+    categorias: Mapped[List["Categoria"]] = relationship(secondary=postagens_categorias, back_populates="postagens")
+
     def __repr__(self):
         return f"<Postagem({self.id}) '{self.titulo}'>"
+    
+
+class Categoria(Base):
+
+    __tablename__ = "categorias"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    nome: Mapped[str] = mapped_column(String(100), nullable=False)
+    postagens: Mapped[List["Postagem"]] = relationship(secondary=postagens_categorias, back_populates="categorias")
+
+    def __repr__(self):
+        return f"<Categoria({self.id}) '{self.nome}'>"
