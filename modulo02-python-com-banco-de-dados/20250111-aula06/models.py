@@ -1,10 +1,12 @@
 from datetime import date
 from typing import List
 
-from sqlalchemy import Integer, String, ForeignKey, Date, Text, Column, Table
+from sqlalchemy import Integer, String, ForeignKey, Date, Text, Column, Table, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from config import Base
+
+import datetime
 
 postagens_categorias = Table(
     "postagens_categorias",
@@ -48,6 +50,16 @@ class Perfil(Base):
     nome: Mapped[str] = mapped_column(String(50), nullable=False)
     sobrenome: Mapped[str] = mapped_column(String(100), nullable=False)
     data_de_nascimento: Mapped[date] = mapped_column(Date, nullable=True)
+
+    criado_em: Mapped[DateTime] = mapped_column(
+        DateTime,
+        default=datetime.datetime.now(datetime.UTC)
+    )
+    atualizado_em: Mapped[DateTime] = mapped_column(
+        DateTime,
+        default=datetime.datetime.now(datetime.UTC),
+        onupdate=datetime.datetime.now(datetime.UTC)
+    )
 
     usuario: Mapped["Usuario"] = relationship(back_populates="perfil")
 

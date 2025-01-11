@@ -7,7 +7,8 @@ from usuarios import gerenciar_usuarios
 
 if __name__ == "__main__":
     # O comando abaixo utiliza o objeto de conexão para criar as tabelas associadas as classes
-    Base.metadata.create_all(connection)
+    # Como estamos utilizando o SQLAlchemy para controlar as alterações no banco de dados, não precisamos mais do comando abaixo
+    # Base.metadata.create_all(connection)
 
     while True:
         print(MENU_PRINCIPAL)
