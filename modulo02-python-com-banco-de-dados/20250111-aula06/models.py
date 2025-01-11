@@ -36,7 +36,9 @@ class Usuario(Base):
     perfil: Mapped["Perfil"] = relationship(back_populates="usuario")
 
     # O parâmetro uselist=True indica que esse atributo irá retornar uma lista de objetos Perfil associados ao objeto Usuario atual. Caso o usuário não tenha feito postagens, será retornada uma lista vazia.
-    postagens: Mapped["Postagem"] = relationship(back_populates="usuario", uselist=True)
+    postagens: Mapped[List["Postagem"]] = relationship(back_populates="usuario", uselist=True)
+
+    comentarios: Mapped[List["Comentario"]] = relationship(back_populates="usuario", uselist=True)
 
     def __repr__(self) -> str:
         return f"<Usuario {self.email}>"
@@ -79,6 +81,7 @@ class Postagem(Base):
     usuario: Mapped["Usuario"] = relationship(back_populates="postagens")
 
     categorias: Mapped[List["Categoria"]] = relationship(secondary=postagens_categorias, back_populates="postagens")
+    comentarios: Mapped[List["Comentario"]] = relationship(back_populates="postagem", uselist=True)
 
     def __repr__(self):
         return f"<Postagem({self.id}) '{self.titulo}'>"
@@ -94,3 +97,19 @@ class Categoria(Base):
 
     def __repr__(self):
         return f"<Categoria({self.id}) '{self.nome}'>"
+    
+
+class Comentario(Base):
+
+    __tablename__ = "comentarios"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    postagem_id: Mapped[int] = mapped_column(Integer, ForeignKey("postagens.id"), nullable=False)
+    usuario_id: Mapped[int] = mapped_column(Integer, ForeignKey("usuarios.id"), nullable=False)
+    texto: Mapped[str] = mapped_column(String(200), nullable=False)
+
+    postagem: Mapped["Postagem"] = relationship(back_populates="comentarios")
+    usuario: Mapped["Usuario"] = relationship(back_populates="comentarios")
+
+    def __repr__(self):
+        return f"<Comentario ({self.usuario} | {self.postagem}) '{self.texto}'>"
